@@ -1,3 +1,13 @@
+import os
+
+DEBUG = True
+
+TIME_ZONE = 'Asia/Tokyo'
+
+LANGUAGE_CODE = 'ja'
+
+USE_I18N = True
+
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
 )
@@ -16,15 +26,15 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 #    'django.core.context_processors.request',
 )
  
-INSTALLED_APPS = (
-    'testapp',
-    'polls' 
-)
- 
 ROOT_URLCONF = 'urls'
  
-import os
 ROOT_PATH = os.path.dirname(__file__)
 TEMPLATE_DIRS = (
     ROOT_PATH + '/templates',
 )
+
+INSTALLED_APPS = (
+    'testapp',
+    'polls' ,
+)
+ 

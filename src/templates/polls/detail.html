@@ -1,14 +1,26 @@
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-
 <h1>[{{ poll.question }}]</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
 <ul>
-{% for choice in poll.choice_set.all %}
+{% for choice in poll.choices %}
     <li>{{ choice.choice }}</li>
 {% endfor %}
 </ul>
+
+<form action="/polls/{{ poll.iid }}/vote/" method="post">
+{% for choice in poll.choices %}
+    <input type="radio" name="choice" id="choice{{ forloop.counter }}"
+     value="{{ choice.iid }}" />
+    <label for="choice{{ forloop.counter }}">{{ choice.choice }}</label><br />
+{% endfor %}
+<input type="submit" value="投票する" />
+</form>
 
 </body>
 </html>

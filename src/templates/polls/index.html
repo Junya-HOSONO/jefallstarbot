@@ -1,12 +1,13 @@
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
 
 {% if latest_poll_list %}
     <ul>
     {% for poll in latest_poll_list %}
-        <li>{{ poll.question }}</li>
+        <li>質問:{{ poll.question }}、日付：{{ poll.pub_date }}</li>
     {% endfor %}
     </ul>
 {% else %}
