@@ -7,7 +7,7 @@
 {% if latest_poll_list %}
     <ul>
     {% for poll in latest_poll_list %}
-        <li>質問:{{ poll.question }}、日付：{{ poll.pub_date }}</li>
+        <li>質問:<a href="/polls/{{ poll.iid }}/">{{ poll.question }}、日付：{{ poll.pub_date }}</a></li>
     {% endfor %}
     </ul>
 {% else %}

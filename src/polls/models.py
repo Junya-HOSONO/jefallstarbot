@@ -29,17 +29,18 @@ class Choice(db.Model):
     
 
 
-#下の２行でデータストアに登録可能、ただし日付はUTC？
-#obj = Poll(iid=1,question=u"それはなに？")
-#obj = Poll(iid=2,question=u"それはなに？1")
-#obj2 = Poll(iid=3,question=u"それはなに？2")
-#obj.put()
+#テストデータ作成
+#obj1 = Poll(iid=1,question=u"それはなに？1")
+#obj2 = Poll(iid=2,question=u"それはなに？2")
+#obj3 = Poll(iid=3,question=u"それはなに？3")
+#obj1.put()
 #obj2.put()
+#obj3.put()
 
 #q = db.Query(Poll).filter('iid =', 1)
 #p1 = q.get()
 #c1 = Choice(iid=1001,poll_id=p1.key(), choice="dog",votes=0)
-#c2 = Choice(iid=1001,poll_id=p1.key(), choice="cat",votes=1)
+#c2 = Choice(iid=1002,poll_id=p1.key(), choice="cat",votes=0)
 #c1.put()
 #c2.put()
 
