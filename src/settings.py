@@ -18,8 +18,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
  
 INSTALLED_APPS = (
     'testapp',
-    'poll',
-    'newapp',
+#    'poll',
+#    'newapp',
 )
  
 ROOT_URLCONF = 'urls'
