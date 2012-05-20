@@ -18,7 +18,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
  
 INSTALLED_APPS = (
     'testapp',
-    'main',
+    'mainlogic',
 )
  
 ROOT_URLCONF = 'urls'
