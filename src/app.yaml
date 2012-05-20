@@ -10,8 +10,8 @@ handlers:
   static_files: favicon.ico
   upload: favicon\.ico
   
-- url: /templates
-  script: templates/(.html)
+#- url: /templates
+#  script: templates/(.html)
   
 - url: /.*
   script: main.py
