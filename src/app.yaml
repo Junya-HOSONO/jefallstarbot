@@ -6,9 +6,14 @@ threadsafe: false
 
 handlers:
 
+- url: /favicon\.ico
+  static_files: favicon.ico
+  upload: favicon\.ico
+
 - url: /.*
   script: main.py
 
+  
 libraries:
 - name: django
   version: "1.2"
