@@ -6,6 +6,13 @@ threadsafe: false
 
 handlers:
 
+- url: /favicon\.ico
+  static_files: favicon.ico
+  upload: favicon\.ico
+  
+- url: /templates
+  script: templates/(.html)
+  
 - url: /.*
   script: main.py
 
