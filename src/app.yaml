@@ -7,7 +7,7 @@ threadsafe: false
 handlers:
 
 - url: /favicon\.ico
-  static_files: favicon.ico
+  static_files: static/ico/favicon.ico
   upload: favicon\.ico
 
 - url: /.*
@@ -17,7 +17,7 @@ handlers:
 libraries:
 - name: django
   version: "1.2"
-
+  
 env_variables:
   DJANGO_SETTINGS_MODULE: 'settings'
   

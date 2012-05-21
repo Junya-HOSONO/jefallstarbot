@@ -1,5 +1,8 @@
-#Sun May 20 21:39:17 JST 2012
+#Tue May 22 00:31:10 JST 2012
 eclipse.preferences.version=1
+encoding//src/extlib/twitterlib.py=utf-8
+encoding//src/mainlogic/models.py=utf-8
 encoding//src/mainlogic/views.py=utf-8
+encoding//src/secretdata.py=utf-8
 encoding//src/urls.py=utf-8
 encoding/<project>=UTF-8

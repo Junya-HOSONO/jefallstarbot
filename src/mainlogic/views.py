@@ -5,6 +5,7 @@
 from django.shortcuts import render_to_response
 import django
 import datetime
+from models import Tweet
 
 def index(request):
     #メインページ
@@ -22,4 +23,7 @@ def request(request):
           'dver': ",".join([str(r) for r in django.VERSION]) },
     )
 
-
+def tweet(request):
+    #つぶやく、画面には何も出さない
+    t=Tweet()
+    t.tweet(request)
