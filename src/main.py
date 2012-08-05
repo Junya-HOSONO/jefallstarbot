@@ -1,6 +1,5 @@
 import os
  
-
 def main():
     import django.core.handlers.wsgi
 

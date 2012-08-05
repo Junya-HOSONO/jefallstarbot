@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
 )
@@ -18,7 +20,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
  
 INSTALLED_APPS = (
     'testapp',
-    'mainlogic',
+#    'mainlogic',
+    'mainapp',
 )
  
 ROOT_URLCONF = 'urls'
