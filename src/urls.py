@@ -3,6 +3,7 @@
 from django.conf.urls.defaults import *
 
 urlpatterns = patterns('',
+#    (r'^css/(?P<path>.*)$', 'django.views.static.serve', {'document_root': '/css'}),
     (r'^testapp/', 'testapp.views.home'), #OK
     (r'^mainapp/', 'mainapp.views.home'), #OK
     (r'^tweet', 'mainapp.views.tweet'), #OK

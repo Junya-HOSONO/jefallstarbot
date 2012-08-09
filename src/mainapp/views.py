@@ -11,6 +11,7 @@ from django.shortcuts import render_to_response
 import django
 import datetime
 import logging
+from extlib import dateutil
 
 #from models import Tweet
 from models import Tweet
@@ -27,3 +28,9 @@ def tweet(request):
     logging.info('mainapp tweet start')
     t=Tweet()
     t.tweet(request)
+    #なにか画面に出す
+    return render_to_response(
+        'mainapp/index.html',
+        { 'clock': "tweeted!",
+          'dver': ",".join([str(r) for r in django.VERSION]) },
+    )
