@@ -11,7 +11,8 @@ from django.shortcuts import render_to_response
 import django
 import datetime
 import logging
-from extlib import dateutil
+from dateutil import zoneinfo, tz
+
 
 #from models import Tweet
 from models import Tweet
@@ -20,7 +21,8 @@ def home(request):
     logging.info('mainapp home start')
     return render_to_response(
         'mainapp/index.html',
-        { 'clock': datetime.datetime.now(),
+        { 'clock': localtime(datetime.datetime.now(tz.tzutc())),
+#        { 'clock': datetime.datetime.now(),
           'dver': ",".join([str(r) for r in django.VERSION]) },
     )
 
@@ -34,3 +36,18 @@ def tweet(request):
         { 'clock': "tweeted!",
           'dver': ",".join([str(r) for r in django.VERSION]) },
     )
+
+
+
+
+# 関数
+
+def localtime(dt, tzname='Asia/Tokyo'):
+  """
+  >>> from datetime import *
+  >>> now = datetime.now(tz.tzutc())
+  >>> localtime(now)
+  """
+  return dt.replace(tzinfo=tz.tzutc()).astimezone(zoneinfo.gettz(tzname))
+  
+  
