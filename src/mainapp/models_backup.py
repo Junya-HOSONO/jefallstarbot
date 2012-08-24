@@ -4,7 +4,7 @@ from google.appengine.ext import db
 from extlib import twitterlib
 import secretdata
 import logging
-
+import datetime
 
 class Tweet():
     logging.info('tweet start')
@@ -70,3 +70,8 @@ class PlayList(db.Model):
     lost = db.BooleanProperty(required=True)
     goodplay = db.IntegerProperty()
     badplay = db.IntegerProperty()
+
+    #UTCで登録してあるデータから日本時間でgetする
+    def get_created_time(self):
+        return self.created_time + datetime.timedelta(hours=9)
+    

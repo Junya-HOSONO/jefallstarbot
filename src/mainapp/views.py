@@ -13,9 +13,8 @@ import datetime
 import logging
 from dateutil import zoneinfo, tz
 
-
 #from models import Tweet
-from models import Tweet
+from models import Tweet, Player
 
 def home(request):
     logging.info('mainapp home start')
@@ -37,7 +36,44 @@ def tweet(request):
           'dver': ",".join([str(r) for r in django.VERSION]) },
     )
 
+def players(request):
+    logging.info('mainapp players start')
 
+    #Player一覧を作る
+    q = Player.all()
+#    for player in q: #OK
+#        logging.info(player.firstname)
+
+#    results = q.fetch() #NG
+       
+    return render_to_response(
+        'mainapp/players.html',
+        { 'playercount': q.count(), 'playerdata': q },
+    )
+
+def testdataload(request):
+    logging.info('mainapp testdataload start')
+
+    obj = Player()
+    obj.firstname = u"勇樹"
+    obj.lastname = u"阿部"
+    obj.nickname = u"阿部ちゃん"
+    obj.country = u"日本"
+    obj.attendedyear = [2003,2004,2005,2006,2007]
+    obj.put()
+
+    obj2 = Player()
+    obj2.firstname = u"誠一郎"
+    obj2.lastname = u"巻"
+    obj2.nickname = u"マキ"
+    obj2.country = u"日本"
+    obj2.attendedyear = [2003,2004,2005,2006,2007,2008,2009,2010]
+    obj2.put()
+    
+    return render_to_response(
+        'mainapp/players.html',
+        {  },
+    )
 
 
 # 関数
