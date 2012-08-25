@@ -19,7 +19,7 @@ from models import Tweet, Player
 def home(request):
     logging.info('mainapp home start')
     return render_to_response(
-        'mainapp/index.html',
+        'mainapp/base-index.html',
         { 'clock': localtime(datetime.datetime.now(tz.tzutc())),
 #        { 'clock': datetime.datetime.now(),
           'dver': ",".join([str(r) for r in django.VERSION]) },
@@ -31,7 +31,7 @@ def tweet(request):
     t.tweet(request)
     #なにか画面に出す
     return render_to_response(
-        'mainapp/index.html',
+        'mainapp/base-index.html',
         { 'clock': "tweeted!",
           'dver': ",".join([str(r) for r in django.VERSION]) },
     )
@@ -47,9 +47,21 @@ def players(request):
 #    results = q.fetch() #NG
        
     return render_to_response(
-        'mainapp/players.html',
+        'mainapp/base-players.html',
         { 'playercount': q.count(), 'playerdata': q },
     )
+
+
+def aboutthisbot(request):
+    logging.info('mainapp aboutthisbot start')
+
+    try:
+        return render_to_response(
+            'mainapp/base-aboutthisbot.html',
+            { },
+        )
+    except Exception, e:
+        logging.error(e)     
 
 def testdataload(request):
     logging.info('mainapp testdataload start')
@@ -71,7 +83,7 @@ def testdataload(request):
     obj2.put()
     
     return render_to_response(
-        'mainapp/players.html',
+        'mainapp/base-players.html',
         {  },
     )
 

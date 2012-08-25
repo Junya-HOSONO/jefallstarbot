@@ -1,4 +1,4 @@
-#Sun Aug 05 15:49:53 JST 2012
+#Sat Aug 25 08:59:54 JST 2012
 eclipse.preferences.version=1
 encoding//src/extlib/twitterlib.py=utf-8
 encoding//src/mainapp/models.py=utf-8
@@ -6,6 +6,9 @@ encoding//src/mainapp/models_backup.py=utf-8
 encoding//src/mainapp/views.py=utf-8
 encoding//src/secretdata.py=utf-8
 encoding//src/settings.py=utf-8
+encoding//src/templates/mainapp/base-aboutthisbot.html=UTF-8
+encoding//src/templates/mainapp/base-index.html=UTF-8
+encoding//src/templates/mainapp/base-players.html=UTF-8
 encoding//src/testdata.py=utf-8
 encoding//src/urls.py=utf-8
 encoding/<project>=UTF-8

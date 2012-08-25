@@ -1,0 +1,31 @@
+{% extends "mainapp/base.html" %}
+
+{% block titletag %}登録選手情報について - JEF allstar bot{% endblock titletag %}
+
+{% block maincontent %}
+
+				<header>
+					<h1>登録選手について</h1>
+					<p>このページでは、登録されている選手の一覧を表示します。</p>
+				</header>
+				<section>
+					<h2>登録選手一覧</h2>
+
+{% if playerdata %}
+
+	<p>登録選手数：{{ playercount }}名</p>
+    <table>
+        <tr><th>選手名</th><th>登録日付</th></tr>
+    {% for player in playerdata %}
+        <tr><td>{{ player.get_fullname }}</td><td>{{ player.get_create_time|date:"Y年n月j日 H:i" }}</td></tr>
+    {% endfor %}
+    </table>
+{% else %}
+    <p>※選手データが取得できませんでした…</p>
+{% endif %}
+
+				</section>
+{% endblock maincontent %}
+
+{% block sidebar %}
+{% endblock sidebar %}

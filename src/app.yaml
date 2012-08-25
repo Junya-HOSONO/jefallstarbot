@@ -19,6 +19,9 @@ handlers:
 - url: /img
   static_dir: static/img
 
+#- url: /base\.html
+#  static_files: templates/mainapp/base.html
+  
 - url: /.*
   script: main.py
 

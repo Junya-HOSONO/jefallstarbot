@@ -10,6 +10,7 @@ urlpatterns = patterns('',
     (r'^tweet', 'mainapp.views.tweet'), #OK
     (r'^players', 'mainapp.views.players'), #OK
     (r'^testdataload', 'mainapp.views.testdataload'), #OK
+    (r'^aboutthisbot', 'mainapp.views.aboutthisbot'), #OK
 #    (r'^./$', 'mainlogic.views.index'), #これがうまくいかない
     # Uncomment this for admin:
 #     (r'^admin/', include('django.contrib.admin.urls')),

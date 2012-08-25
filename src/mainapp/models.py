@@ -6,6 +6,18 @@ from extlib import twitterlib
 import secretdata
 import datetime
 
+class PlayList(db.Model):
+    # 一連のプレーをデータ化したもの
+    playlist_key = db.Key
+    create_time = db.DateTimeProperty(auto_now_add=True)
+    last_update = db.DateTimeProperty(auto_now=True)
+    plays = db.ListProperty(basestring)
+    endplay = db.IntegerProperty()    
+    goal = db.BooleanProperty()
+    lost = db.BooleanProperty()
+    goodplay = db.IntegerProperty()
+    badplay = db.IntegerProperty()   
+    
 class Tweet():
     logging.info('Tweet start') #あああ
     def tweet(self, request):
@@ -48,3 +60,16 @@ class Player(db.Model):
         return self.last_update + datetime.timedelta(hours=9)    
     def get_fullname(self):
         return self.lastname + " " + self.firstname    
+
+class MyTweet(db.Model):
+    # 自分がつぶやいたものを保管
+    mytweet_key = db.Key
+    create_time = db.DateTimeProperty(auto_now_add=True)
+    last_update = db.DateTimeProperty(auto_now=True)
+    tweet = db.StringProperty()            #tweetそのもの
+    tweeturl = db.StringProperty()         #tweetのurl
+    players = db.ListProperty(basestring)  #該当する選手のデータキーのリスト
+    commentator = db.Key                   #該当するコメンテーターのデータキー
+    request = db.Key                       #リクエストから作られたtweetならそのデータキー
+    
+    

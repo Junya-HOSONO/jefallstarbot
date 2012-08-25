@@ -7,6 +7,14 @@
 #from google.appengine.ext import db
 from mainapp import models
 
+#------------------------プレイリスト登録-------------------------
+
+
+
+
+
+#------------------------選手登録-------------------------
+
 obj = models.Player()
 obj.firstname = u"勇樹"
 obj.lastname = u"阿部"
