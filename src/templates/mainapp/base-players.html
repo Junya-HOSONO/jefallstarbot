@@ -1,6 +1,89 @@
 {% extends "mainapp/base.html" %}
 
+{# 登録選手についてのページのテンプレート #}
+
 {% block titletag %}登録選手情報について - JEF allstar bot{% endblock titletag %}
+
+{% block otherhead %}
+
+    <script src="/zingchart/html5_scripts/zingchart-html5-min.js"></script>
+    
+    <script type="text/javascript">
+        $(function() {
+        	//ウィンドウが読み込み終わったらやること
+
+			//選手セレクタを選んだときの処理
+			$('#selectplayer').change(function (e) {
+				//$('#selectedplayer').text( $(this).val() ); //OK
+				//$('#selectedplayer').load( '/zingchart/graphfile.txt' ); //OK
+				//$('#selectedplayer').load( '/getajax' ); //OK 	
+
+				//選手データをajaxで取得する
+				$.ajax({
+					type: 'post',
+					url: '/getajax',
+					cache: false,
+					data: {
+						'key' : $(this).val()
+					},
+					success: function(data,dataType) {
+						//dataにはJSONオブジェクトが帰ってくる
+						redraw_playerdata( data );
+					},
+					error: function(XMLHttpRequest, textStatus,errorThrown) {
+						this;
+						alert(errorThrown);
+					}
+				});
+							
+				//redraw_zingchart
+			});
+			
+			//選手グラフを描く
+			zingchart.render({
+				id : 'zingchart',
+				output : 'canvas', // or use 'flash' or 'svg', Internet Explorer versions 6,7 and 8 will render using VML
+				width : 400,
+				height : 400,
+				dataurl : '/zingchart/playdataformat.txt',
+//				dataurl : '/zingchart/graphfile.txt',
+				liburl : '/zingchart/flash_scripts/zingchart.swf' // in case Flash Library is used
+			});
+			
+        });
+
+		function redraw_playerdata( data ) {
+//			alert("reload");
+		    zingchart.exec('zingchart','setdata','{"data": ' + $.stringify(data) + '}');
+		}        
+
+jQuery.extend({
+    stringify : function stringify(obj) {
+        var t = typeof (obj);
+        if (t != "object" || obj === null) {
+            // simple data type
+            if (t == "string") obj = '"' + obj + '"';
+            return String(obj);
+        } else {
+            // recurse array or object
+            var n, v, json = [], arr = (obj && obj.constructor == Array);
+ 
+            for (n in obj) {
+                v = obj[n];
+                t = typeof(v);
+                if (obj.hasOwnProperty(n)) {
+                    if (t == "string") v = '"' + v + '"'; else if (t == "object" && v !== null) v = jQuery.stringify(v);
+                    json.push((arr ? "" : '"' + n + '":') + String(v));
+                }
+            }
+            return (arr ? "[" : "{") + String(json) + (arr ? "]" : "}");
+        }
+    }
+});
+
+    </script>
+
+{% endblock otherhead %}
 
 {% block maincontent %}
 
@@ -15,9 +98,9 @@
 
 	<p>登録選手数：{{ playercount }}名</p>
     <table>
-        <tr><th>選手名</th><th>登録日付</th></tr>
+        <tr><th>選手名</th><th>登録日付</th><th>登録プレー数</th><th></th></tr>
     {% for player in playerdata %}
-        <tr><td>{{ player.get_fullname }}</td><td>{{ player.get_create_time|date:"Y年n月j日 H:i" }}</td></tr>
+        <tr><td>{{ player.get_fullname }}</td><td>{{ player.get_create_time|date:"Y年n月j日" }}</td><td>{{ player.get_playcount }}</td><td></td></tr>
     {% endfor %}
     </table>
 {% else %}
@@ -25,7 +108,29 @@
 {% endif %}
 
 				</section>
+				
+				<section>
+				<h2>登録データ</h2>
+				<p>プレーの種類</p>
+
+				<p>プレー位置の図示：全選手と個別選手ごとに選べる</p>
+				<label for="selectplayer">選手を選択してください。</label><br />
+				<select id="selectplayer" name="selectplayer">
+				<option value="all" label="全選手" selected></option>
+{% if playerdata %}
+    {% for player in playerdata %}
+    {# todo ここのキーそのままをハッシュかなにかにしておく #}
+    <option value="{{ player.get_key_by_string }}" label="{{ player.get_fullname }}"></option>
+    {% endfor %}
+{% endif %}
+				</select>
+				<div id="selectedplayer"></div>
+
+
+				</section>
+				
+				<section>
+				<div id="zingchart"></div>
+				</section>
 {% endblock maincontent %}
 
-{% block sidebar %}
-{% endblock sidebar %}

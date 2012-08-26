@@ -2,7 +2,9 @@
 
 # Create your views here.
 
-#from django.http import HttpResponse
+from django.http import HttpResponse
+from google.appengine.ext.db import Key
+
 #
 #def home(request):
 #    return HttpResponse('The Book Store home page.')
@@ -30,10 +32,11 @@ def tweet(request):
     t=Tweet()
     t.tweet(request)
     #なにか画面に出す
+    logging.info('mainapp tweet end')
+
     return render_to_response(
         'mainapp/base-index.html',
-        { 'clock': "tweeted!",
-          'dver': ",".join([str(r) for r in django.VERSION]) },
+        {  },
     )
 
 def players(request):
@@ -41,10 +44,6 @@ def players(request):
 
     #Player一覧を作る
     q = Player.all()
-#    for player in q: #OK
-#        logging.info(player.firstname)
-
-#    results = q.fetch() #NG
        
     return render_to_response(
         'mainapp/base-players.html',
@@ -66,27 +65,50 @@ def aboutthisbot(request):
 def testdataload(request):
     logging.info('mainapp testdataload start')
 
-    obj = Player()
-    obj.firstname = u"勇樹"
-    obj.lastname = u"阿部"
-    obj.nickname = u"阿部ちゃん"
-    obj.country = u"日本"
-    obj.attendedyear = [2003,2004,2005,2006,2007]
-    obj.put()
-
-    obj2 = Player()
-    obj2.firstname = u"誠一郎"
-    obj2.lastname = u"巻"
-    obj2.nickname = u"マキ"
-    obj2.country = u"日本"
-    obj2.attendedyear = [2003,2004,2005,2006,2007,2008,2009,2010]
-    obj2.put()
+    import testdata
     
     return render_to_response(
         'mainapp/base-players.html',
         {  },
     )
 
+
+
+def getajax(request):
+    if request.is_ajax():
+        if request.method == "POST":
+            logging.info('getajax start')
+            parm = request.POST
+            parm_key = parm['key']
+#            logging.info(parm_key)
+
+            #responseオブジェクトを準備
+            res = HttpResponse(mimetype='application/json')
+            res['Pragma'] = 'no-cache'
+
+            #返すデータをJSONで生成
+            keyobj = Key(parm_key)
+            pl = Player.get(keyobj)
+            if pl:
+                #引数で指定されたキーを持つ選手の、とりあえず名前を返す
+                retstr = u""
+                logging.info(pl.get_fullname())
+#                retstr = '{ "name" : "' + pl.get_fullname() + '"}' #OK
+                retstr = '{"graphset" : [{"type" : "bar","series" : [{"values" : [' + str(pl.get_playcount()) + ']}]}]}'
+                logging.info(retstr)
+                res.write(retstr)
+
+            logging.info('getajax end')
+            return res
+
+        logging.info('illegal access to getajax')
+        #エラー画面を返す？
+        return 
+            
+    else:
+        logging.info('illegal access to getajax')
+        #エラー画面を返す？
+        return 
 
 # 関数
 

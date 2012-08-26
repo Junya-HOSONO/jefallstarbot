@@ -1,0 +1,12 @@
+{
+	"graphset" : [
+		{
+			"type" : "bar",
+			"series" : [
+				{
+					"values" : [5]
+				}
+			]
+		}
+	]
+}

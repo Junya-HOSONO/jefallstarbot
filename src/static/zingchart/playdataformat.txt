@@ -1,0 +1,104 @@
+{
+"graphset":[
+    {
+        "type":"piano",
+        "alpha":1,
+        "background-color":"#FFFFFF",
+"background-image":"http://www.zingchart.com/package/examples/images/base_with_y_axis.png",
+        "plotarea":{
+            "border-width":0,
+            "fill-type":"linear",
+            "margin":"40 20 75 25",
+        	"background-transparent": true        	
+
+        },
+        "title":{
+            "text":"選手のプレーエリア",
+            "background-color":"-1",
+            "bold":true,
+            "font-color":"#000000",
+            "font-family":"arial",
+            "font-size":"16px",
+            "margin":"400",
+            "text-align":"left"
+        },
+        "scale-x":{
+            "font-color":"#000000",
+            "line-color":"#000000",
+            "line-width":"2px",
+            "guide":{
+                "alpha":1,
+                "line-color":"#000000",
+                "line-style":"solid"
+            },
+            "item":{
+                "font-color":"#000000",
+                "font-weight":"bold"
+            },
+            "labels":["(ピッチ外)","左サイド","中央","右サイド","(ピッチ外)"],
+            "tick":{
+                "line-color":"#000000",
+                "line-width":"3px",
+                "placement":"outer",
+                "size":"4px"
+            },
+            "values":["（ピッチ外）","左サイド","中央","右サイド","（ピッチ外）"]
+        },
+        "scale-y":{
+            "line-color":"#000000",
+            "line-width":"2px",
+            "guide":{
+                "alpha":1,
+                "line-color":"#000000",
+                "line-style":"solid"
+            },
+            "item":{
+                "font-color":"#000000",
+                "font-weight":"bold"
+            },
+            "tick":{
+                "line-color":"#000000",
+                "line-width":"3px",
+                "placement":"outer",
+                "size":4
+            },
+            "values":["１","２","３","４","５"]
+        },
+        "plot":{
+            "alpha":0.8,
+            "animate":1,
+            "aspect":"brightness",
+            "background-color":"#008800",
+            "effect":1,
+            "tooltip-text":""
+        },
+        "chart" : {
+        	"height" : "300",
+        	"position" : "50% 50%",
+        	"background-transparent": true        	
+    	},
+        "series":[
+            {
+                "values":[0,0,1,0,0],
+                "text":"１"
+            },
+            {
+                "values":[0,3,2,3,0],
+                "text":"２"
+            },
+            {
+                "values":[0,2,1,5,0],
+                "text":"３"
+            },
+            {
+                "values":[0,3,8,5,0],
+                "text":"４"
+            },
+            {
+                "values":[0,0,2,0,0],
+                "text":"５"
+            }
+        ]
+    }
+]
+}
