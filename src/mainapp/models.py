@@ -124,10 +124,11 @@ class Tweet():
             logging.info(u"確定したtweetnote :" + tweetnote)
             logging.info(u"確定したtweetnoteの文字数 :" + str(len(tweetnote)) + u"文字")
 
+            logging.info('tweet pre call') 
 #            #実際につぶやく            
-#            api.statuses.update(status=tweetnote) #2012/8/25時点でなぜか失敗するのでとりあえず保留
+            api.statuses.update(status=tweetnote) #2012/8/25時点でなぜか失敗するのでとりあえず保留
 
-            logging.info('tweet 6') 
+            logging.info('tweet post call') 
 
 #            #つぎやいたものをMyTweetに保管する
             mt = MyTweet()

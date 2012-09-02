@@ -2,6 +2,7 @@
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
+    'django.contrib.csrf.middleware.CsrfMiddleware', #CSRF対策
 )
 
 TEMPLATE_LOADERS = (
