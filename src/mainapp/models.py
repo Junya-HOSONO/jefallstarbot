@@ -125,8 +125,10 @@ class Tweet():
             logging.info(u"確定したtweetnoteの文字数 :" + str(len(tweetnote)) + u"文字")
 
             logging.info('tweet pre call') 
-#            #実際につぶやく            
-            api.statuses.update(status=tweetnote) #2012/8/25時点でなぜか失敗するのでとりあえず保留
+
+            #実際につぶやく            
+            #2012/9/4 本番環境では403エラー
+            api.statuses.update(status=tweetnote)
 
             logging.info('tweet post call') 
 

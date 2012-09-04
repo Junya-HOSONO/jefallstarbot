@@ -5,6 +5,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.csrf.middleware.CsrfMiddleware', #CSRF対策
 )
 
+CSRF_COOKIE_NAME = ('jefallstarbot-csrftoken')
+
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.load_template_source',
     'django.template.loaders.app_directories.load_template_source',

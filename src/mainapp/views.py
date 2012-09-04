@@ -4,6 +4,7 @@
 
 from django.http import HttpResponse
 from google.appengine.ext.db import Key
+from django.core.context_processors import csrf
 
 #
 #def home(request):
@@ -75,10 +76,12 @@ def testdataload(request):
 
 
 def getajax(request):
+    logging.info('called getajax')
+
     if request.is_ajax():
         if request.method == "POST":
             logging.info('getajax start')
-            parm = request.POST
+            parm = request.POST #POSTの引数のみを参照する
             parm_key = parm['key']
 #            logging.info(parm_key)
 
