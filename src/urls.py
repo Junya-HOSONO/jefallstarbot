@@ -8,6 +8,7 @@ urlpatterns = patterns('',
     (r'^testapp/', 'testapp.views.home'), #OK
     (r'^mainapp/', 'mainapp.views.home'), #OK
     (r'^tweet', 'mainapp.views.tweet'), #OK
+    (r'^tweet_fromcron', 'mainapp.views.tweet_fromcron'), #OK
     (r'^players', 'mainapp.views.players'), #OK
     (r'^testdataload', 'mainapp.views.testdataload'), #OK
     (r'^aboutthisbot', 'mainapp.views.aboutthisbot'), #OK

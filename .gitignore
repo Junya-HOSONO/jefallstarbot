@@ -1,3 +1,4 @@
 #gitに管理させたくないファイルを書く
 src/secretdata.py
+src/cron.yaml
 

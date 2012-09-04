@@ -128,6 +128,8 @@ class Tweet():
 
             #実際につぶやく            
             #2012/9/4 本番環境では403エラー
+            #cstf対策したら本番でもつぶやけるようになったが、ローカルでまた403エラー…
+            #これは直前のつぶやきと内容がおなじと判断されたから、とおもわれる。
             api.statuses.update(status=tweetnote)
 
             logging.info('tweet post call') 

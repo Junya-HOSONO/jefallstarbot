@@ -28,6 +28,14 @@ def home(request):
           'dver': ",".join([str(r) for r in django.VERSION]) },
     )
 
+def tweet_fromcron(request):
+    #
+    logging.info('mainapp tweet_fromcron start')
+    #
+    tweet(request)
+    return 
+
+
 def tweet(request):
     logging.info('mainapp tweet start')
     t=Tweet()
