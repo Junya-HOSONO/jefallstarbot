@@ -1,5 +1,0 @@
-cron:
-- description: test job
-  url: /tweet_fromcron
-  schedule: every 5 minutes
-  
